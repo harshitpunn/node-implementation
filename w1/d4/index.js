@@ -21,4 +21,11 @@ server.get('/', (req, res) => {
   });
 });
 
+server.post('/characters', (req, res) => {
+  console.log(req.body);
+  const { name, age } = req.body;
+  users.push({ name: name, age: age, id: users.length + 1 });
+  res.redirect('/');
+});
+
 server.listen(3001, () => console.log('Server is running on 3001'));
