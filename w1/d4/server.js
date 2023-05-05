@@ -18,6 +18,14 @@ app.get('/', (req, res) => {
   res.render('pets', { pets });
 });
 
+// end points to edit pets
+
+app.get('/edit/:id', (req, res) => {
+  const id = +req.params.id;
+  const pet = pets.find((pet) => pet.id === id);
+  res.render('editPet', { pet });
+});
+
 app.post('/delete/:id', (req, res) => {
   const id = +req.params.id;
   pets = pets.filter((pet) => pet.id != id);

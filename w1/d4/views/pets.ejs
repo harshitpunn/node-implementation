@@ -16,6 +16,10 @@
         <%= pet.name %>
           <%= pet.age %>
             <%= pet.type %>
+
+              <form method="GET" action="/edit/<%= pet.id %>">
+                <button>Edit</button>
+              </form>
               <form method="POST" action="/delete/<%= pet.id %>">
                 <button>Delete</button>
               </form>
