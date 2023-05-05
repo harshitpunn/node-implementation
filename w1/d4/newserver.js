@@ -26,6 +26,14 @@ server.get('/', (req, res) => {
   });
 });
 
-server.post('/', (req, res) => {});
+server.post('/', (req, res) => {
+  const user = getUsers();
+  const newUser = { ...req.body, id: user.length + 1 };
+  const updatedUsers = [...user, newUser];
+  updateUser(updatedUsers);
+  res.redirect('/');
+});
+
+// develop the endpoints to edit , delete the users in users.json
 
 server.listen(3000, () => console.log('Server is working on Port 3000'));
