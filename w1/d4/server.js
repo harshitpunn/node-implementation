@@ -26,6 +26,19 @@ app.get('/edit/:id', (req, res) => {
   res.render('editPet', { pet });
 });
 
+app.post('/edit/:id', (req, res) => {
+  const updatedPet = { ...req.body };
+  const id = +req.params.id;
+  pets = pets.map((pet) => {
+    if (pet.id === id) {
+      return { ...pet, ...updatedPet };
+    }
+    return pet;
+  });
+
+  res.redirect('/');
+});
+
 app.post('/delete/:id', (req, res) => {
   const id = +req.params.id;
   pets = pets.filter((pet) => pet.id != id);
