@@ -16,7 +16,9 @@
     <%= subtitle %>
   </h2>
   <ul>
-
+    <% users.forEach(user=> {%>
+      <%- include('user', {user}) %>
+        <%})%>
   </ul>
 </body>
 
