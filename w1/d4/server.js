@@ -18,6 +18,8 @@ app.get('/', (req, res) => {
   res.render('pets', { pets });
 });
 
+// create a similar flow on your own
+
 // end points to edit pets
 
 app.get('/edit/:id', (req, res) => {

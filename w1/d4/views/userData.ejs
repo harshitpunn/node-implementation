@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Data</title>
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <h2>
+    <%= subtitle %>
+  </h2>
+  <h3>Character names</h3>
+  <ul>
+    <% users.forEach(user=> {%>
+      <%- include('userDataList', {user}) %>
+        <%})%>
+  </ul>
+  <h3>Character Id's</h3>
+  <h3>Character Age</h3>
+
+  <form method="POST" action="/characters">
+    <label for="name">Name:</label>
+    <input type="text" name="name">
+    <label for="name">Age:</label>
+    <input type="number" name="age">
+    <input type="submit">
+
+  </form>
+
+
+</body>
+
+</html>
