@@ -18,6 +18,12 @@ app.get('/', (req, res) => {
   res.render('pets', { pets });
 });
 
+app.post('/delete/:id', (req, res) => {
+  const id = +req.params.id;
+  pets = pets.filter((pet) => pet.id != id);
+  res.redirect('/');
+});
+
 app.listen(3000, () => {
   console.log('Server is running');
 });
