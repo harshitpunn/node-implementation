@@ -1,5 +1,6 @@
 const cookieSession = require('cookie-session');
 const express = require('express');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -13,5 +14,7 @@ app.use(
 );
 
 app.set('view engine', 'ejs');
+
+app.use('/auth', authRouter);
 
 app.listen(8080, () => console.log('server running'));
