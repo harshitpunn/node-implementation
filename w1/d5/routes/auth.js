@@ -4,6 +4,7 @@ const express = require('express');
 const {
   showRegisterForm,
   registerUser,
+  logoutUser,
 } = require('../controllers/authController');
 
 const router = express.Router();
@@ -17,5 +18,7 @@ router.post('/register', registerUser);
 //post on login
 
 //post on logout
+
+router.post('/logout', logoutUser);
 
 module.exports = router;

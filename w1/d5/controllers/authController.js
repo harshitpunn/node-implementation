@@ -8,14 +8,18 @@ const showRegisterForm = (req, res) => {
 const registerUser = async (req, res) => {
   const userName = req.body.username;
   const hashedPassword = await hashPassword(req.body.password);
-
-  console.log(hashedPassword);
-
+  // skipping the step to store data in users.json as of now
   req.session.username = userName;
   res.redirect('/user/profile');
+};
+
+const logoutUser = (req, res) => {
+  req.session = null;
+  res.redirect('/auth/login');
 };
 
 module.exports = {
   showRegisterForm,
   registerUser,
+  logoutUser,
 };
