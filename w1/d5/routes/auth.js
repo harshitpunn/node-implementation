@@ -7,4 +7,12 @@ const router = express.Router();
 
 router.get('/register', showRegisterForm);
 
+//post on registration
+
+//get on login
+
+//post on login
+
+//post on logout
+
 module.exports = router;
