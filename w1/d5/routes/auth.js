@@ -5,6 +5,8 @@ const {
   showRegisterForm,
   registerUser,
   logoutUser,
+  showLoginForm,
+  loginUser,
 } = require('../controllers/authController');
 
 const router = express.Router();
@@ -13,11 +15,9 @@ router.get('/register', showRegisterForm);
 
 router.post('/register', registerUser);
 
-//get on login
+router.get('/login', showLoginForm);
 
-//post on login
-
-//post on logout
+router.post('/login', loginUser);
 
 router.post('/logout', logoutUser);
 
