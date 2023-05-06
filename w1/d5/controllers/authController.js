@@ -1,4 +1,5 @@
 const { hashPassword } = require('../helpers/userHelper');
+const users = require('../models/users.json');
 
 const showRegisterForm = (req, res) => {
   res.render('register');
@@ -10,8 +11,8 @@ const registerUser = async (req, res) => {
 
   console.log(hashedPassword);
 
-  //req.session.username = userName;
-  // res.redirect('/user/profile');
+  req.session.username = userName;
+  res.redirect('/user/profile');
 };
 
 module.exports = {
