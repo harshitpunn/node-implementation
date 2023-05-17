@@ -9,7 +9,7 @@ const saltRounds = 12;
 
 const hashPassword = async (password, saltrounds) => {
   console.time('hashing this password');
-  const salt = await bcrypt.genSalt(saltRounds);
+  const salt = await bcrypt.genSalt(saltrounds);
   console.log('salt', salt);
 
   const hash = await bcrypt.hash(password, salt);
