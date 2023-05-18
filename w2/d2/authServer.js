@@ -6,16 +6,31 @@ const jwt = require('jsonwebtoken');
 
 app.use(express.json());
 
+const refreshTokensData = [];
+
+app.post('/token', (req, res) => {
+  const refreshToken = req.body.token;
+  if (refreshToken == null) return res.sendStatus(401);
+  if (!refreshTokensData.includes(refreshToken)) return res.sendStatus(403);
+
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    const accessToken = generateAccessToken({ name: user.name });
+    res.json({ accessToken: accessToken });
+  });
+});
+
 app.post('/login', (req, res) => {
-  console.log(req.body);
   const username = req.body.username;
   const user = { user: username };
-
-  console.log(generateAccessToken(user));
+  const accessToken = generateAccessToken(user);
+  const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+  refreshTokensData.push(refreshToken);
+  res.json({ accessToken: accessToken, refreshToken: refreshToken });
 });
 
 function generateAccessToken(user) {
-  return jwt.sign(user, process.env.ACCESS_TOKEN, { expiresIn: '15s' });
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
 }
 
 app.listen(4000);
