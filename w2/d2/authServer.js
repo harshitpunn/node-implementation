@@ -27,7 +27,9 @@ app.delete('/logout', (req, res) => {
 
 app.post('/login', (req, res) => {
   const username = req.body.username;
+  console.log(req);
   const user = { user: username };
+  console.log(user);
   const accessToken = generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
   refreshTokensData.push(refreshToken);
@@ -35,7 +37,7 @@ app.post('/login', (req, res) => {
 });
 
 function generateAccessToken(user) {
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
+  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '200s' });
 }
 
 app.listen(4000);
