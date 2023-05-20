@@ -31,7 +31,26 @@ const getHeroesDetails = async (req, res) => {
     const id = req.params.id;
     const heroDetail = await heroes.heroesModel.findById(id);
     res.json(heroDetail);
-  } catch (error) {}
+  } catch (error) {
+    res.json({
+      error: true,
+      message: error.message,
+    });
+  }
 };
 
-module.exports = { getAllHeroes, addNewHeroes, getHeroesDetails };
+const deleteHero = async (req, res) => {
+  try {
+    console.log(req.params);
+    const id = req.params.id;
+    const deleteResult = await heroes.heroesModel.findByIdAndDelete(id);
+    if (!deleteResult) {
+      return res.status(404).json({ message: 'Hero not found' });
+    }
+    return res.status(200).json({ message: 'Hero Deleted' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+module.exports = { getAllHeroes, addNewHeroes, getHeroesDetails, deleteHero };
