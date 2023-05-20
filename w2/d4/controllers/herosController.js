@@ -26,6 +26,12 @@ const addNewHeroes = async (req, res) => {
   }
 };
 
-const getHeroesDetails = (req, res) => {};
+const getHeroesDetails = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const heroDetail = await heroes.heroesModel.findById(id);
+    res.json(heroDetail);
+  } catch (error) {}
+};
 
 module.exports = { getAllHeroes, addNewHeroes, getHeroesDetails };
