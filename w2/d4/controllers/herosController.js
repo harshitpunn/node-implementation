@@ -9,7 +9,22 @@ const getAllHeroes = async (req, res) => {
   }
 };
 
-const addNewHeroes = (req, res) => {};
+const addNewHeroes = async (req, res) => {
+  try {
+    const heroObject = {
+      name: req.body.name,
+      address: req.body.address,
+      phone: req.body.phone,
+    };
+    const createHero = await heroes.heroesModel.create(heroObject);
+    res.json(createHero);
+  } catch (error) {
+    res.json({
+      error: true,
+      message: error.message,
+    });
+  }
+};
 
 const getHeroesDetails = (req, res) => {};
 
