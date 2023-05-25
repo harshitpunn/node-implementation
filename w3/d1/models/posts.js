@@ -9,6 +9,18 @@ const postsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users',
   },
+  tags: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'tags',
+    },
+  ],
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'categories',
+    },
+  ],
 });
 
 module.exports = {

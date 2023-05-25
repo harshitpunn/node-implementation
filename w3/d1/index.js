@@ -12,6 +12,8 @@ const port = process.env.PORT || 4000;
 const moviesRoute = require('./routes/movieRoutes');
 const authenticationRoute = require('./routes/authenticationRoutes');
 const postRoute = require('./routes/postsRoutes');
+const categoriesRoute = require('./routes/categoriesRoutes');
+const tagsRoute = require('./routes/tagsRoutes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,6 +31,8 @@ db.once('open', () => console.error('connected to database'));
 app.use('/api/movies', moviesRoute);
 app.use('/api/auth', authenticationRoute);
 app.use('/api/posts', postRoute);
+app.use('/api/categories', categoriesRoute);
+app.use('/api/tags', tagsRoute);
 
 app.listen(port, () => {
   console.log('Server is running');
