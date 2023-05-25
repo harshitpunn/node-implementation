@@ -9,6 +9,12 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'posts',
+    },
+  ],
 });
 
 module.exports = {

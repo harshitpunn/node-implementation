@@ -11,6 +11,7 @@ const port = process.env.PORT || 4000;
 // movies route variable
 const moviesRoute = require('./routes/movieRoutes');
 const authenticationRoute = require('./routes/authenticationRoutes');
+const postRoute = require('./routes/postsRoutes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ db.once('open', () => console.error('connected to database'));
 // movie routes
 app.use('/api/movies', moviesRoute);
 app.use('/api/auth', authenticationRoute);
+app.use('/api/posts', postRoute);
 
 app.listen(port, () => {
   console.log('Server is running');
